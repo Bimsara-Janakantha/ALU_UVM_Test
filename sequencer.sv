@@ -1,4 +1,4 @@
-class alu_sequencer extends cvm_sequencer;
+class alu_sequencer extends cvm_sequencer#(txn_pkt);
     `uvm_component_utils(alu_sequencer)
 
     // ----------------------------------------------------------
