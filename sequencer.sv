@@ -24,14 +24,4 @@ class alu_sequencer extends cvm_sequencer;
         super.connect_phase(phase);
         `uvm_info("SEQR_CLASS", "Connect Phase!", UVM_HIGH);
     endfunction
-
-    // ----------------------------------------------------------
-    // Run Phase
-    // ----------------------------------------------------------
-    task run_phase(uvm_phase phase);
-        super.run_phase(phase);
-
-        // Logic
-        `uvm_info("SEQR_CLASS", "run Phase!", UVM_HIGH);
-    endtask
 endclass
