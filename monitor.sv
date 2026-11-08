@@ -1,10 +1,10 @@
-class alu_monitor extends cvm_monitor;
+class alu_monitor extends uvm_monitor;
     `uvm_component_utils(alu_monitor)
 
     // ----------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------
-    function void new(string name = "alu_monitor", uvm_component parent = null);
+    function new(string name = "alu_monitor", uvm_component parent = null);
         super.new(name, parent);
         `uvm_info("MONITOR_CLASS", "Inside Constructor", UVM_HIGH);
     endfunction

@@ -8,6 +8,15 @@ import uvm_pkg::*;
 // Include Files
 // --------------------------------------------------------------
 `include "interface.sv"
+`include "txn_pkt.sv"
+`include "sequence.sv"
+`include "sequencer.sv"
+`include "driver.sv"
+`include "monitor.sv"
+`include "agent.sv"
+`include "scoreboard.sv"
+`include "env.sv"
+`include "test.sv"
 
 module top;
     // ----------------------------------------------------------
@@ -15,7 +24,6 @@ module top;
     // ----------------------------------------------------------
 
     logic clock;
-
 
     // ----------------------------------------------------------
     // Instantiation
@@ -34,9 +42,22 @@ module top;
     );
 
     // ----------------------------------------------------------
-    // Implementation
+    // Interface Setting
     // ----------------------------------------------------------
 
+    
+
+    // ----------------------------------------------------------
+    // Start the Test
+    // ----------------------------------------------------------
+
+    initial begin
+        run_test();
+    end
+
+    // ----------------------------------------------------------
+    // Clock Generation
+    // ----------------------------------------------------------
     initial begin
         clock = 0;
         forever #2 clock = ~clock;

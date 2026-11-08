@@ -1,10 +1,10 @@
-class alu_sequencer extends cvm_sequencer#(alu_txn_pkt);
+class alu_sequencer extends uvm_sequencer#(alu_txn_pkt);
     `uvm_component_utils(alu_sequencer)
 
     // ----------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------
-    function void new(string name = "alu_sequencer", uvm_component parent = null);
+    function new(string name = "alu_sequencer", uvm_component parent = null);
         super.new(name, parent);
         `uvm_info("SEQR_CLASS", "Inside Constructor", UVM_HIGH);
     endfunction
