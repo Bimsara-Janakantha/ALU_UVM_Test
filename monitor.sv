@@ -1,6 +1,8 @@
 class alu_monitor extends uvm_monitor;
     `uvm_component_utils(alu_monitor)
 
+    virtual alu_interface vif_monitor;
+
     // ----------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------
@@ -15,6 +17,10 @@ class alu_monitor extends uvm_monitor;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info("MONITOR_CLASS", "Build Phase!", UVM_HIGH);
+
+        if(!(uvm_config_db #(virtual alu_interface)::get(this, "*", "vif", vif_monitor))) begin
+            `uvm_error("MONITOR_CLASS", "Failed to get virtual interface from config db!");
+        end
     endfunction
 
     // ----------------------------------------------------------

@@ -45,7 +45,9 @@ module top;
     // Interface Setting
     // ----------------------------------------------------------
 
-    
+    initial begin
+        uvm_config_db #(virtual alu_interface)::set(null, "*", "vif", intf);
+    end
 
     // ----------------------------------------------------------
     // Start the Test
