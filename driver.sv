@@ -1,4 +1,4 @@
-class alu_driver extends uvm_driver#(txn_pkt);
+class alu_driver extends uvm_driver#(alu_txn_pkt);
     `uvm_component_utils(alu_driver)
 
     // ----------------------------------------------------------
