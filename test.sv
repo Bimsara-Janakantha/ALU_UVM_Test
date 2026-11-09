@@ -1,6 +1,8 @@
 class alu_test extends uvm_test;
     `uvm_component_utils(alu_test)
 
+    alu_env env;
+
     // ----------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------
@@ -15,6 +17,8 @@ class alu_test extends uvm_test;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info("TEST_CLASS", "Build Phase!", UVM_HIGH);
+
+        env = alu_env::type_id::create("env", this);
     endfunction
 
     // ----------------------------------------------------------

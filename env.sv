@@ -1,6 +1,8 @@
 class alu_env extends uvm_env;
     `uvm_component_utils(alu_env)
 
+    alu_agent agent;
+
     // ----------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------
@@ -15,6 +17,8 @@ class alu_env extends uvm_env;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info("ENV_CLASS", "Build Phase!", UVM_HIGH);
+
+        agent = alu_agent::type_id::create("agent", this);
     endfunction
 
     // ----------------------------------------------------------
