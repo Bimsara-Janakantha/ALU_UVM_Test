@@ -18,6 +18,13 @@ class alu_txn_pkt extends uvm_sequence_item;
     logic       carry_out;
 
     // ----------------------------------------------------------
+    // Default Constraint
+    // ----------------------------------------------------------
+    constraint input1_c {a inside {[10:20]};}
+    constraint input2_c {b inside {[1:10]};}
+    constraint op_code_c {op_code inside {0,1,2,3};}
+    
+    //------------------------------------------------------
     // Constructor
     // ----------------------------------------------------------
     function new(string name = "alu_txn_pkt");
