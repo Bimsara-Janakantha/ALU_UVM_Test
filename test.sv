@@ -51,9 +51,11 @@ class alu_test extends uvm_test;
         #10;
 
         // Test Sequence
-        test_seq = alu_test_sequence::type_id::create("test_seq");
-        test_seq.start(env.agent.seqr);
-        #10;
+        repeat(100) begin
+            test_seq = alu_test_sequence::type_id::create("test_seq");
+            test_seq.start(env.agent.seqr);
+            #10;
+        end
 
         phase.drop_objection(this);
     endtask
