@@ -1,8 +1,13 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
 class alu_monitor extends uvm_monitor;
     `uvm_component_utils(alu_monitor)
 
     virtual alu_interface vif_monitor;
     alu_txn_pkt pkt;
+
+    uvm_analysis_port #(alu_txn_pkt) monitor_port;
 
     // ----------------------------------------------------------
     // Constructor
@@ -18,6 +23,8 @@ class alu_monitor extends uvm_monitor;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         `uvm_info("MONITOR_CLASS", "Build Phase!", UVM_HIGH);
+
+        monitor_port = new("monitor_port", this);
 
         if(!(uvm_config_db #(virtual alu_interface)::get(this, "*", "vif", vif_monitor))) begin
             `uvm_error("MONITOR_CLASS", "Failed to get virtual interface from config db!");
@@ -55,6 +62,8 @@ class alu_monitor extends uvm_monitor;
             @(posedge vif_monitor.clock);
             pkt.result  = vif_monitor.result;
             
+            // Send the transaction to the scoreboard
+            monitor_port.write(pkt);
         end
     endtask
 endclass

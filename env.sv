@@ -1,7 +1,11 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
 class alu_env extends uvm_env;
     `uvm_component_utils(alu_env)
 
     alu_agent agent;
+    alu_scoreboard scb;
 
     // ----------------------------------------------------------
     // Constructor
@@ -19,6 +23,7 @@ class alu_env extends uvm_env;
         `uvm_info("ENV_CLASS", "Build Phase!", UVM_HIGH);
 
         agent = alu_agent::type_id::create("agent", this);
+        scb = alu_scoreboard::type_id::create("scb", this);
     endfunction
 
     // ----------------------------------------------------------
@@ -27,6 +32,8 @@ class alu_env extends uvm_env;
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         `uvm_info("ENV_CLASS", "Connect Phase!", UVM_HIGH);
+
+        agent.mon.monitor_port.connect(scb.scoreboard_port);
     endfunction
 
     // ----------------------------------------------------------

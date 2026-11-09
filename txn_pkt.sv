@@ -1,3 +1,6 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
 // Object Class
 
 class alu_txn_pkt extends uvm_sequence_item;

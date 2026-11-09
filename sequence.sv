@@ -1,3 +1,6 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
 // Object class
 
 class alu_base_sequence extends uvm_sequence;

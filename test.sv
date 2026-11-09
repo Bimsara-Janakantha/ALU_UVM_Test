@@ -48,10 +48,12 @@ class alu_test extends uvm_test;
         // Reset Sequence
         reset_seq = alu_base_sequence::type_id::create("reset_seq");
         reset_seq.start(env.agent.seqr);
+        #10;
 
         // Test Sequence
         test_seq = alu_test_sequence::type_id::create("test_seq");
         test_seq.start(env.agent.seqr);
+        #10;
 
         phase.drop_objection(this);
     endtask
