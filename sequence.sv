@@ -24,9 +24,9 @@ class alu_base_sequence extends uvm_sequence;
         reset_pkt.randomize() with {reset == 1;};
         finish_item(reset_pkt);
     endtask
-endclass
+endclass: alu_base_sequence
 
-classalu_test_sequence extends alu_base_sequence;
+class alu_test_sequence extends alu_base_sequence;
     `uvm_object_utils(alu_test_sequence)
 
     alu_txn_pkt pkt;
@@ -50,3 +50,4 @@ classalu_test_sequence extends alu_base_sequence;
         pkt.randomize() with {reset == 0;};
         finish_item( pkt);
     endtask
+endclass: alu_test_sequence

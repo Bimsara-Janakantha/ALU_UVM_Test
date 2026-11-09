@@ -2,6 +2,7 @@ class alu_monitor extends uvm_monitor;
     `uvm_component_utils(alu_monitor)
 
     virtual alu_interface vif_monitor;
+    alu_txn_pkt pkt;
 
     // ----------------------------------------------------------
     // Constructor
@@ -36,8 +37,24 @@ class alu_monitor extends uvm_monitor;
     // ----------------------------------------------------------
     task run_phase(uvm_phase phase);
         super.run_phase(phase);
-
-        // Logic
         `uvm_info("MONITOR_CLASS", "run Phase!", UVM_HIGH);
+
+        forever begin
+            pkt = alu_txn_pkt::type_id::create("pkt");
+
+            // Wait for reset to be deasserted
+            wait(!vif_monitor.reset); 
+
+            // Sample the inputs
+            @(posedge vif_monitor.clock);
+            pkt.a       = vif_monitor.a;
+            pkt.b       = vif_monitor.b;
+            pkt.op_code = vif_monitor.op_code;
+
+            // Sample the outputs (wait for next cycle)
+            @(posedge vif_monitor.clock);
+            pkt.result  = vif_monitor.result;
+            
+        end
     endtask
 endclass

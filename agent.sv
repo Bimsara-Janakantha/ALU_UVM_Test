@@ -31,6 +31,8 @@ class alu_agent extends uvm_agent;
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         `uvm_info("AGENT_CLASS", "Connect Phase!", UVM_HIGH);
+
+        drv.seq_item_port.connect(seqr.seq_item_export);
     endfunction
 
     // ----------------------------------------------------------
